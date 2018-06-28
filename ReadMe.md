@@ -3,7 +3,7 @@
 1. Node JS
 2. NVM
 3. Yarn
-4. Angular CLI (npm install -g @angular/cli)
+4. Angular CLI ```npm install -g @angular/cli```
 
 5. set angular CLI to use yarn by using this command 
 ``` ng set --global packageManager=yarn ```
