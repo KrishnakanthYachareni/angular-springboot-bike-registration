@@ -22,13 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        JwtWebSecurityConfigurer.forRS256(apiAudience, issuer).configure(http)
+        JwtWebSecurityConfigurer
+                .forRS256(apiAudience, issuer)
+                .configure(http)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/bikes").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/bikes")
-                .hasAuthority("view:registrations")
-                .antMatchers(HttpMethod.GET, "/api/v1/bikes/**")
-                .hasAuthority("view:registration")
+                .antMatchers(HttpMethod.GET, "/api/v1/bikes").hasAuthority("view:registrations")
+                .antMatchers(HttpMethod.GET, "/api/v1/bikes/**").hasAuthority("view:registration")
                 .anyRequest()
                 .authenticated();
     }

@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './components/admin/admin.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
-import { ViewRegistrationComponent } from './components/view-registration/view-registration.component';
-import { CallbackComponent } from './components/callback/callback.component';
-import { AuthGuard } from './services/auth.guard';
+import {ViewRegistrationComponent} from './components/view-registration/view-registration.component';
+import {AuthGuard} from './services/auth.guard';
+import {AdminComponent} from './components/admin/admin.component';
+import {CallbackComponent} from './components/callback/callback.component';
+
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
     path: 'admin/view/:id',
     component: ViewRegistrationComponent,
     canActivate: [AuthGuard]
- },
+  },
   {
     path: 'admin',
     component: AdminComponent,
@@ -31,4 +32,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

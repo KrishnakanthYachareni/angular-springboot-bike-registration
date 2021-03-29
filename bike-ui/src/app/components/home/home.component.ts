@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { BikeService } from '../../services/bike.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-
-
+import {Component, OnInit} from '@angular/core';
+import {BikeService} from '../../services/bike.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +14,14 @@ export class HomeComponent implements OnInit {
     'Globo Carbon Fiber Race Series',
     'Globo Time Trial Blade',
   ];
+  // @ts-ignore
   bikeform: FormGroup;
-  validMessage: string = "";
-                    
-  constructor(private bikeService: BikeService) { }
+  validMessage = '';
 
-  ngOnInit() {
+  constructor(private bikeService: BikeService) {
+  }
+
+  ngOnInit(): void {
     this.bikeform = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
@@ -34,22 +34,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  submitRegistration() {
-
+  submitRegistration(): any {
     if (this.bikeform.valid) {
-      this.validMessage = "Your bike registration has been submitted. Thank you!";
-      this.bikeService.createBikeRegistration(this.bikeform.value).subscribe(
-        data => {
-          this.bikeform.reset();
-          return true;
-        },
-        error => {
-          return Observable.throw(error);
-        }
-      )
+      this.validMessage = 'Your bike registration has been submitted. Thank you!';
+      this.bikeService.createBikeRegistration(this.bikeform.value)
+        .subscribe(data => {
+            this.bikeform.reset();
+            return true;
+          },
+          error => {
+            return Observable.throw(error);
+          }
+        );
     } else {
-      this.validMessage = "Please fill out the form before submitting!";
+      this.validMessage = 'Please fill out the form before submitting!';
     }
   }
-
 }
